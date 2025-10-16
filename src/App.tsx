@@ -6,6 +6,7 @@ import { ForumCategoriesPage } from './pages/ForumCategoriesPage';
 import { TopicListPage } from './pages/TopicListPage';
 import { TopicDetailPage } from './pages/TopicDetailPage';
 import { TracksPage } from './pages/TracksPage';
+import { TrackDetailPage } from './pages/TrackDetailPage';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Placeholder for pages not yet created
@@ -36,7 +37,7 @@ function App() {
       case 'tracks':
         return <TracksPage />;
       case 'trackDetail':
-        return <PlaceholderPage title="Detalhes da Trilha" />;
+        return <TrackDetailPage />;
       default:
         return <HomePage />;
     }

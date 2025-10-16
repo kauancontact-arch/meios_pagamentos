@@ -61,3 +61,18 @@ export interface Track {
   totalDurationMinutes: number;
   level: 'Iniciante' | 'Intermediário' | 'Avançado';
 }
+
+export interface Module {
+  id: string;
+  trackId: string;
+  title: string;
+  lessons: Lesson[];
+}
+
+export interface Lesson {
+  id: string;
+  moduleId: string;
+  title: string;
+  type: 'video' | 'text' | 'quiz';
+  durationMinutes: number;
+}
