@@ -3,6 +3,7 @@ import { AppLayout } from './components/layout/AppLayout';
 import { LoginPage } from './pages/LoginPage';
 import { HomePage } from './pages/HomePage';
 import { ForumCategoriesPage } from './pages/ForumCategoriesPage';
+import { TopicListPage } from './pages/TopicListPage';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Placeholder for pages not yet created
@@ -26,9 +27,10 @@ function App() {
         return <HomePage />;
       case 'forum':
         return <ForumCategoriesPage />;
-      // Add other cases as pages are built
       case 'topicList':
-        return <PlaceholderPage title="Lista de Tópicos" />;
+        return <TopicListPage />;
+      case 'topicDetail':
+        return <PlaceholderPage title="Detalhe do Tópico" />;
       case 'tracks':
         return <PlaceholderPage title="Trilhas de Aprendizado" />;
       default:
