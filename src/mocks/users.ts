@@ -1,0 +1,46 @@
+import { User } from '@/types';
+
+export const mockUsers: User[] = [
+  {
+    id: 'user-1',
+    name: 'Ana Silva',
+    email: 'ana.silva@email.com',
+    avatarUrl: 'https://i.pravatar.cc/150?u=user-1',
+    bio: 'Especialista em adquirência e liquidação com 10 anos de experiência no mercado de pagamentos.',
+    title: 'Especialista de Pagamentos',
+    company: 'Adquirente S.A.',
+    location: 'São Paulo, SP',
+    xp: 1250,
+    roles: ['mentor', 'user'],
+    badges: [
+      { id: 'badge-1', name: 'Especialista', icon: '🏆' },
+      { id: 'badge-2', name: 'Contribuidor', icon: '✍️' },
+    ],
+  },
+  {
+    id: 'user-2',
+    name: 'Bruno Costa',
+    email: 'bruno.costa@email.com',
+    avatarUrl: 'https://i.pravatar.cc/150?u=user-2',
+    bio: 'Desenvolvedor de software focado em arquitetura de sistemas para fintechs.',
+    title: 'Engenheiro de Software Sênior',
+    company: 'Fintech Inovadora',
+    location: 'Remoto',
+    xp: 850,
+    roles: ['user'],
+    badges: [{ id: 'badge-2', name: 'Contribuidor', icon: '✍️' }],
+  },
+  {
+    id: 'admin-1',
+    name: 'Admin',
+    email: 'admin@email.com',
+    avatarUrl: 'https://i.pravatar.cc/150?u=admin-1',
+    bio: 'Administrador da Comunidade.',
+    title: 'Admin',
+    company: 'Comunidade Pagamentos',
+    location: 'Brasil',
+    xp: 9999,
+    roles: ['admin', 'user'],
+    badges: [],
+  },
+];
