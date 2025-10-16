@@ -4,6 +4,7 @@ import { LoginPage } from './pages/LoginPage';
 import { HomePage } from './pages/HomePage';
 import { ForumCategoriesPage } from './pages/ForumCategoriesPage';
 import { TopicListPage } from './pages/TopicListPage';
+import { TopicDetailPage } from './pages/TopicDetailPage';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Placeholder for pages not yet created
@@ -30,7 +31,7 @@ function App() {
       case 'topicList':
         return <TopicListPage />;
       case 'topicDetail':
-        return <PlaceholderPage title="Detalhe do Tópico" />;
+        return <TopicDetailPage />;
       case 'tracks':
         return <PlaceholderPage title="Trilhas de Aprendizado" />;
       default:
