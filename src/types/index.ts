@@ -50,3 +50,14 @@ export interface Post {
   upvotes: number;
   isBestAnswer: boolean;
 }
+
+export interface Track {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  authorId: string;
+  moduleCount: number;
+  totalDurationMinutes: number;
+  level: 'Iniciante' | 'Intermediário' | 'Avançado';
+}

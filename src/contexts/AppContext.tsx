@@ -2,7 +2,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 import { User } from '@/types';
 import { mockUsers } from '@/mocks/users';
 
-type Screen = 'login' | 'onboarding' | 'home' | 'forum' | 'topicList' | 'topicDetail' | 'tracks' | 'profile';
+type Screen = 'login' | 'onboarding' | 'home' | 'forum' | 'topicList' | 'topicDetail' | 'tracks' | 'trackDetail' | 'profile';
 
 interface AppContextType {
   currentUser: User | null;
