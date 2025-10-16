@@ -7,6 +7,7 @@ import { TopicListPage } from './pages/TopicListPage';
 import { TopicDetailPage } from './pages/TopicDetailPage';
 import { TracksPage } from './pages/TracksPage';
 import { TrackDetailPage } from './pages/TrackDetailPage';
+import { ProfilePage } from './pages/ProfilePage';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Placeholder for pages not yet created
@@ -38,6 +39,8 @@ function App() {
         return <TracksPage />;
       case 'trackDetail':
         return <TrackDetailPage />;
+      case 'profile':
+        return <ProfilePage />;
       default:
         return <HomePage />;
     }

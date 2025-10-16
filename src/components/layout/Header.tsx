@@ -1,10 +1,10 @@
-import { Bell, Search, User as UserIcon } from 'lucide-react';
+import { Bell, Search } from 'lucide-react';
 import { useAppContext } from '@/contexts/AppContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 export function Header() {
-  const { currentUser, logout } = useAppContext();
+  const { currentUser, logout, navigate } = useAppContext();
 
   return (
     <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-10">
@@ -16,13 +16,13 @@ export function Header() {
         <Button variant="ghost" size="icon">
           <Bell className="h-5 w-5 text-gray-600" />
         </Button>
-        <div className="flex items-center gap-3">
+        <button onClick={() => navigate('profile')} className="flex items-center gap-3 text-left p-1 rounded-lg hover:bg-accent transition-colors">
           <img src={currentUser?.avatarUrl} alt={currentUser?.name} className="w-9 h-9 rounded-full" />
           <div>
             <p className="font-semibold text-sm text-gray-800">{currentUser?.name}</p>
             <p className="text-xs text-gray-500">{currentUser?.title}</p>
           </div>
-        </div>
+        </button>
         <Button variant="outline" size="sm" onClick={logout}>Sair</Button>
       </div>
     </header>
