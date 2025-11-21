@@ -8,6 +8,7 @@ import { TopicDetailPage } from './pages/TopicDetailPage';
 import { TracksPage } from './pages/TracksPage';
 import { TrackDetailPage } from './pages/TrackDetailPage';
 import { EventsPage } from './pages/EventsPage';
+import { EventDetailPage } from './pages/EventDetailPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -55,6 +56,8 @@ function App() {
         return <TrackDetailPage />;
       case 'events':
         return <EventsPage />;
+      case 'eventDetail':
+        return <EventDetailPage />;
       case 'profile':
         return <ProfilePage />;
       default:

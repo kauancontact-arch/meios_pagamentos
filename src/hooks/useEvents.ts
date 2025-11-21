@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Event } from '@/types';
 import { supabase } from '@/integrations/supabase/client';
+import { mockEvents } from '@/mocks/events';
 
 export function useEvents() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchEvents();
+    // For now, use mock data instead of fetching from Supabase
+    setEvents(mockEvents);
+    setLoading(false);
   }, []);
 
   const fetchEvents = async () => {
