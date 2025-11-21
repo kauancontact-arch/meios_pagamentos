@@ -1,4 +1,21 @@
-const fetchUserData = async (id: string) => {
+import { useState, useEffect } from 'react';
+import { User } from '@/types';
+import { supabase } from '@/integrations/supabase/client';
+
+export function useUserData(userId?: string) {
+  const [userData, setUserData] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (userId) {
+      fetchUserData(userId);
+    } else {
+      setUserData(null);
+      setLoading(false);
+    }
+  }, [userId]);
+
+  const fetchUserData = async (id: string) => {
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -38,3 +55,24 @@ const fetchUserData = async (id: string) => {
       setLoading(false);
     }
   };
+
+  const updateUserData = async (updates: Partial<User>) => {
+    if (!userId) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .update(updates)
+        .eq('id', userId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      setUserData(data);
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
+  };
+
+  return { userData, loading, updateUserData };
+}
