@@ -3,23 +3,35 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Mail, Lock } from 'lucide-react';
+import { Mail, Lock, User } from 'lucide-react';
 import { useAppContext } from '@/contexts/AppContext';
+import { useAuth } from '@/hooks/useAuth';
 
 export function LoginPage() {
-  const [email, setEmail] = useState('ana.silva@email.com');
-  const [password, setPassword] = useState('123456');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
-  const { login, loading } = useAppContext();
+  const { login } = useAppContext();
+  const { signUp, loading } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
+
     try {
-      await login(email, password);
+      if (isSignUp) {
+        await signUp(email, password, { firstName, lastName });
+        setSuccess('Conta criada com sucesso! Verifique seu email para confirmar.');
+      } else {
+        await login(email, password);
+      }
     } catch (err: any) {
-      setError(err.message || 'Erro ao fazer login');
+      setError(err.message || 'Erro ao processar solicitação');
     }
   };
 
@@ -40,6 +52,32 @@ export function LoginPage() {
           </CardHeader>
           <CardContent className="p-8 pt-0">
             <form onSubmit={handleSubmit} className="space-y-4">
+              {isSignUp && (
+                <>
+                  <div className="relative">
+                    <User className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Nome"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="pl-10 h-12"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <User className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
+                    <Input
+                      type="text"
+                      placeholder="Sobrenome"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="pl-10 h-12"
+                      required
+                    />
+                  </div>
+                </>
+              )}
               <div className="relative">
                 <Mail className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
                 <Input
@@ -60,16 +98,22 @@ export function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 h-12"
                   required
+                  minLength={6}
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
+              {success && <p className="text-sm text-green-500">{success}</p>}
               <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
-                {loading ? 'Entrando...' : isSignUp ? 'Cadastrar' : 'Entrar'}
+                {loading ? 'Processando...' : isSignUp ? 'Criar Conta' : 'Entrar'}
               </Button>
             </form>
             <div className="mt-4 text-center">
               <button
-                onClick={() => setIsSignUp(!isSignUp)}
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setError('');
+                  setSuccess('');
+                }}
                 className="text-sm text-primary hover:underline"
               >
                 {isSignUp ? 'Já tem conta? Faça login' : 'Não tem conta? Cadastre-se'}
