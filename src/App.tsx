@@ -13,14 +13,6 @@ import { MentorsPage } from './pages/MentorsPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Placeholder for pages not yet created
-const PlaceholderPage = ({ title }: { title: string }) => (
-  <div>
-    <h1 className="text-3xl font-bold">{title}</h1>
-    <p className="text-gray-500">Esta página está em construção.</p>
-  </div>
-);
-
 function App() {
   const { currentUser, currentScreen, loading } = useAppContext();
 
@@ -30,8 +22,9 @@ function App() {
         <div className="text-center">
           <div className="w-16 h-16 bg-primary rounded-xl mx-auto flex items-center justify-center text-primary-foreground font-bold text-3xl mb-4">
             P
+          </div>
+          <p className="text-gray-500">Carregando...</p>
         </div>
-        <p className="text-gray-500">Carregando...</p>
       </div>
     );
   }
