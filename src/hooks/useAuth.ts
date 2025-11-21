@@ -7,10 +7,14 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('Initializing auth...');
+    
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
         console.error('Error getting session:', error);
+      } else {
+        console.log('Initial session:', session ? 'Found' : 'None');
       }
       setUser(session?.user ?? null);
       setLoading(false);
@@ -19,6 +23,7 @@ export function useAuth() {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session, error) => {
+        console.log('Auth state change:', event, session ? 'Session exists' : 'No session');
         if (error) {
           console.error('Auth state change error:', error);
         }
@@ -31,15 +36,21 @@ export function useAuth() {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    console.log('Attempting sign in for:', email);
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error) throw error;
+    if (error) {
+      console.error('Sign in error:', error);
+      throw error;
+    }
+    console.log('Sign in successful');
     return data;
   };
 
   const signUp = async (email: string, password: string, options?: { firstName?: string; lastName?: string }) => {
+    console.log('Attempting sign up for:', email);
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -50,13 +61,22 @@ export function useAuth() {
         }
       }
     });
-    if (error) throw error;
+    if (error) {
+      console.error('Sign up error:', error);
+      throw error;
+    }
+    console.log('Sign up successful');
     return data;
   };
 
   const signOut = async () => {
+    console.log('Attempting sign out');
     const { error } = await supabase.auth.signOut();
-    if (error) throw error;
+    if (error) {
+      console.error('Sign out error:', error);
+      throw error;
+    }
+    console.log('Sign out successful');
   };
 
   return {
