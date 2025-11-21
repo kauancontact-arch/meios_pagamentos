@@ -6,7 +6,7 @@ const navItems = [
   { name: 'Fórum', icon: MessageSquare, screen: 'forum' },
   { name: 'Trilhas', icon: BookOpen, screen: 'tracks' },
   { name: 'Eventos', icon: Calendar, screen: 'events' },
-  { name: 'Mentores', icon: Users, screen: 'home' }, // Placeholder
+  { name: 'Mentores', icon: Users, screen: 'mentors' },
   { name: 'Ferramentas', icon: Wrench, screen: 'home' }, // Placeholder
   { name: 'Documentos', icon: FileText, screen: 'home' }, // Placeholder
   { name: 'News', icon: Newspaper, screen: 'home' }, // Placeholder

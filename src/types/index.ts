@@ -92,3 +92,29 @@ export interface Event {
   created_at: string;
   updated_at: string;
 }
+
+export interface Mentor {
+  id: string;
+  user: User;
+  specialties: string[];
+  hourlyRate: number;
+  availability: 'available' | 'busy' | 'unavailable';
+  rating: number;
+  totalReviews: number;
+  experience: string;
+  languages: string[];
+  mentorshipCount: number;
+  bio: string;
+  achievements: string[];
+}
+
+export interface MentorshipRequest {
+  id: string;
+  mentorId: string;
+  menteeId: string;
+  status: 'pending' | 'accepted' | 'rejected' | 'completed';
+  requestedAt: string;
+  message: string;
+  proposedDate?: string;
+  duration?: number; // in minutes
+}
