@@ -7,7 +7,7 @@ const navItems = [
   { name: 'Trilhas', icon: BookOpen, screen: 'tracks' },
   { name: 'Eventos', icon: Calendar, screen: 'events' },
   { name: 'Mentores', icon: Users, screen: 'mentors' },
-  { name: 'Ferramentas', icon: Wrench, screen: 'home' }, // Placeholder
+  { name: 'Ferramentas', icon: Wrench, screen: 'tools' },
   { name: 'Documentos', icon: FileText, screen: 'home' }, // Placeholder
   { name: 'News', icon: Newspaper, screen: 'home' }, // Placeholder
   { name: 'Empregos', icon: Briefcase, screen: 'home' }, // Placeholder

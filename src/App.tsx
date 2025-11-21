@@ -10,6 +10,7 @@ import { TrackDetailPage } from './pages/TrackDetailPage';
 import { EventsPage } from './pages/EventsPage';
 import { EventDetailPage } from './pages/EventDetailPage';
 import { MentorsPage } from './pages/MentorsPage';
+import { ToolsPage } from './pages/ToolsPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -53,6 +54,8 @@ function App() {
         return <EventDetailPage />;
       case 'mentors':
         return <MentorsPage />;
+      case 'tools':
+        return <ToolsPage />;
       case 'profile':
         return <ProfilePage />;
       default:
