@@ -31,7 +31,20 @@ export function LoginPage() {
         await login(email, password);
       }
     } catch (err: any) {
-      setError(err.message || 'Erro ao processar solicitação');
+      console.error('Auth error:', err);
+      
+      // Melhor tratamento de erros específicos
+      if (err.message?.includes('Failed to fetch')) {
+        setError('Erro de conexão. Verifique sua internet e tente novamente.');
+      } else if (err.message?.includes('Invalid login credentials')) {
+        setError('Email ou senha incorretos.');
+      } else if (err.message?.includes('User already registered')) {
+        setError('Este email já está cadastrado.');
+      } else if (err.message?.includes('Password should be at least')) {
+        setError('A senha deve ter pelo menos 6 caracteres.');
+      } else {
+        setError(err.message || 'Erro ao processar solicitação');
+      }
     }
   };
 
