@@ -77,3 +77,18 @@ export interface Lesson {
   type: 'video' | 'text' | 'quiz';
   durationMinutes: number;
 }
+
+export interface Event {
+  id: string;
+  title: string;
+  description?: string;
+  type: 'remote_meeting' | 'in_person' | 'lecture' | 'workshop' | 'conference';
+  start_date: string;
+  end_date?: string;
+  location?: string;
+  remote_link?: string;
+  max_attendees?: number;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
