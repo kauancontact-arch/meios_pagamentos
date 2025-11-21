@@ -1,5 +1,3 @@
-import { Mentor } from '@/types';
-
 export const mockMentors: Mentor[] = [
   {
     id: 'mentor-1',
@@ -7,7 +5,7 @@ export const mockMentors: Mentor[] = [
       id: 'user-1',
       first_name: 'Ana',
       last_name: 'Silva',
-      avatar_url: 'https://i.pravatar.cc/150?u=mentor-1',
+      avatar_url: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
       bio: 'Especialista em adquirência e liquidação com 10 anos de experiência no mercado de pagamentos.',
       title: 'Especialista de Pagamentos',
       company: 'Adquirente S.A.',
@@ -102,7 +100,7 @@ export const mockMentors: Mentor[] = [
       id: 'user-4',
       first_name: 'Diego',
       last_name: 'Oliveira',
-      avatar_url: 'https://i.pravatar.cc/150?u=mentor-4',
+      avatar_url: 'https://i.pravatar.cc/150?u=user-4',
       bio: 'Especialista em produtos financeiros digitais e experiência do usuário.',
       title: 'Product Manager',
       company: 'SuperApp Financeiro',
@@ -134,7 +132,7 @@ export const mockMentors: Mentor[] = [
       id: 'user-5',
       first_name: 'Elena',
       last_name: 'Fernandes',
-      avatar_url: 'https://i.pravatar.cc/150?u=mentor-5',
+      avatar_url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
       bio: 'Especialista em regulamentação e compliance no setor de pagamentos.',
       title: 'Consultora Regulatória',
       company: 'Consultoria Financeira',

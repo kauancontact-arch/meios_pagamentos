@@ -5,7 +5,7 @@ export const mockUsers: User[] = [
     id: 'user-1',
     name: 'Ana Silva',
     email: 'ana.silva@email.com',
-    avatarUrl: 'https://i.pravatar.cc/150?u=user-1',
+    avatarUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
     bio: 'Especialista em adquirência e liquidação com 10 anos de experiência no mercado de pagamentos.',
     title: 'Especialista de Pagamentos',
     company: 'Adquirente S.A.',

@@ -79,15 +79,17 @@ export function HomePage() {
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {quickStats.map((stat) => (
-          <Card key={stat.title}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
-                <stat.icon className={`h-4 w-4 ${stat.color}`} />
+          <Card key={stat.title} className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-600 mb-1">{stat.title}</p>
+                  <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                </div>
+                <div className={`p-3 rounded-lg ${stat.bgColor}`}>
+                  <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                </div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
         ))}
@@ -96,16 +98,16 @@ export function HomePage() {
       {/* Community Highlights */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {communityHighlights.map((highlight) => (
-          <Card key={highlight.title}>
+          <Card key={highlight.title} className="hover:shadow-lg transition-shadow">
             <CardContent className="p-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-lg bg-primary/10">
                   <highlight.icon className="h-6 w-6 text-primary" />
                 </div>
-                <div>
-                  <p className="text-2xl font-bold">{highlight.value.toLocaleString()}</p>
-                  <p className="text-sm text-gray-500">{highlight.title}</p>
-                  <p className="text-xs text-gray-400">{highlight.description}</p>
+                <div className="flex-1">
+                  <p className="text-2xl font-bold text-gray-900">{highlight.value.toLocaleString()}</p>
+                  <p className="text-sm text-gray-600">{highlight.title}</p>
+                  <p className="text-xs text-gray-500">{highlight.description}</p>
                 </div>
               </div>
             </CardContent>
@@ -159,11 +161,11 @@ export function HomePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 rounded-lg bg-gray-50">
+              <div className="text-center p-4 rounded-lg bg-gray-50">
                 <p className="text-2xl font-bold text-primary">{currentUser?.xp || 0}</p>
                 <p className="text-sm text-gray-500">XP Total</p>
               </div>
-              <div className="text-center p-3 rounded-lg bg-gray-50">
+              <div className="text-center p-4 rounded-lg bg-gray-50">
                 <p className="text-2xl font-bold text-green-600">{currentUser?.badges?.length || 0}</p>
                 <p className="text-sm text-gray-500">Conquistas</p>
               </div>
