@@ -10,14 +10,16 @@ export function LoginPage() {
   const [email, setEmail] = useState('ana.silva@email.com');
   const [password, setPassword] = useState('123456');
   const [error, setError] = useState('');
-  const { login } = useAppContext();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const { login, loading } = useAppContext();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    const success = login(email);
-    if (!success) {
-      setError('Usuário não encontrado. Tente um dos e-mails mockados.');
+    try {
+      await login(email, password);
+    } catch (err: any) {
+      setError(err.message || 'Erro ao fazer login');
     }
   };
 
@@ -37,7 +39,7 @@ export function LoginPage() {
             <p className="text-gray-500">Aprenda, conecte e construa o futuro.</p>
           </CardHeader>
           <CardContent className="p-8 pt-0">
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative">
                 <Mail className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
                 <Input
@@ -53,7 +55,7 @@ export function LoginPage() {
                 <Lock className="absolute left-3 top-3.5 h-4 w-4 text-gray-400" />
                 <Input
                   type="password"
-                  placeholder="Senha (qualquer valor)"
+                  placeholder="Senha"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 h-12"
@@ -61,13 +63,18 @@ export function LoginPage() {
                 />
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <p className="text-xs text-gray-400 text-center">
-                Use: ana.silva@email.com, bruno.costa@email.com ou admin@email.com
-              </p>
-              <Button type="submit" className="w-full h-12 text-base font-semibold">
-                Entrar
+              <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
+                {loading ? 'Entrando...' : isSignUp ? 'Cadastrar' : 'Entrar'}
               </Button>
             </form>
+            <div className="mt-4 text-center">
+              <button
+                onClick={() => setIsSignUp(!isSignUp)}
+                className="text-sm text-primary hover:underline"
+              >
+                {isSignUp ? 'Já tem conta? Faça login' : 'Não tem conta? Cadastre-se'}
+              </button>
+            </div>
           </CardContent>
         </Card>
       </motion.div>

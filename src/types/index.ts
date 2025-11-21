@@ -2,16 +2,17 @@ export type UserRole = 'user' | 'mentor' | 'admin';
 
 export interface User {
   id: string;
-  name: string;
-  email: string;
-  avatarUrl: string;
-  bio: string;
-  title: string;
-  company: string;
-  location: string;
+  first_name?: string;
+  last_name?: string;
+  avatar_url?: string;
+  bio?: string;
+  title?: string;
+  company?: string;
+  location?: string;
   xp: number;
   roles: UserRole[];
   badges: Badge[];
+  updated_at?: string;
 }
 
 export interface Badge {

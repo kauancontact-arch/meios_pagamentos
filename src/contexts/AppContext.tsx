@@ -1,6 +1,7 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { User } from '@/types';
-import { mockUsers } from '@/mocks/users';
+import { useAuth } from '@/hooks/useAuth';
+import { useUserData } from '@/hooks/useUserData';
 
 type Screen = 'login' | 'onboarding' | 'home' | 'forum' | 'topicList' | 'topicDetail' | 'tracks' | 'trackDetail' | 'profile';
 
@@ -8,33 +9,38 @@ interface AppContextType {
   currentUser: User | null;
   currentScreen: Screen;
   screenParams: any;
-  login: (email: string) => boolean;
-  logout: () => void;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
   navigate: (screen: Screen, params?: any) => void;
+  loading: boolean;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const { user: authUser, signIn, signOut, loading: authLoading } = useAuth();
+  const { userData, loading: userDataLoading } = useUserData(authUser?.id);
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
   const [screenParams, setScreenParams] = useState<any>(null);
 
-  const login = (email: string): boolean => {
-    // Mock login: find user by email, password is ignored
-    const user = mockUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
-    if (user) {
-      setCurrentUser(user);
-      // In a real app, we'd check if onboarding is complete
-      // For this mock, we'll always go home after login
+  const loading = authLoading || userDataLoading;
+
+  useEffect(() => {
+    if (authUser && userData) {
+      // User is authenticated and has profile data
       setCurrentScreen('home');
-      return true;
+    } else if (!authUser) {
+      // User is not authenticated
+      setCurrentScreen('login');
     }
-    return false;
+  }, [authUser, userData]);
+
+  const login = async (email: string, password: string) => {
+    await signIn(email, password);
   };
 
-  const logout = () => {
-    setCurrentUser(null);
+  const logout = async () => {
+    await signOut();
     setCurrentScreen('login');
   };
 
@@ -44,12 +50,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const value = {
-    currentUser,
+    currentUser: userData,
     currentScreen,
     screenParams,
     login,
     logout,
     navigate,
+    loading,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

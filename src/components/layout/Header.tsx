@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 export function Header() {
   const { currentUser, logout, navigate } = useAppContext();
 
+  const fullName = currentUser ? [currentUser.first_name, currentUser.last_name].filter(Boolean).join(' ') : 'Usuário';
+
   return (
     <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-10">
       <div className="relative w-full max-w-md">
@@ -17,10 +19,10 @@ export function Header() {
           <Bell className="h-5 w-5 text-gray-600" />
         </Button>
         <button onClick={() => navigate('profile')} className="flex items-center gap-3 text-left p-1 rounded-lg hover:bg-accent transition-colors">
-          <img src={currentUser?.avatarUrl} alt={currentUser?.name} className="w-9 h-9 rounded-full" />
+          <img src={currentUser?.avatar_url} alt={fullName} className="w-9 h-9 rounded-full" />
           <div>
-            <p className="font-semibold text-sm text-gray-800">{currentUser?.name}</p>
-            <p className="text-xs text-gray-500">{currentUser?.title}</p>
+            <p className="font-semibold text-sm text-gray-800">{fullName}</p>
+            <p className="text-xs text-gray-500">{currentUser?.title || 'Usuário'}</p>
           </div>
         </button>
         <Button variant="outline" size="sm" onClick={logout}>Sair</Button>

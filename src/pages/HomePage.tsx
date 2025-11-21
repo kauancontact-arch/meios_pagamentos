@@ -5,10 +5,13 @@ import { BookOpen, MessageSquare, Calendar } from 'lucide-react';
 export function HomePage() {
   const { currentUser } = useAppContext();
 
+  const fullName = currentUser ? [currentUser.first_name, currentUser.last_name].filter(Boolean).join(' ') : 'Usuário';
+  const firstName = fullName.split(' ')[0];
+
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-800">Bem-vindo(a), {currentUser?.name.split(' ')[0]}!</h1>
+        <h1 className="text-3xl font-bold text-gray-800">Bem-vindo(a), {firstName}!</h1>
         <p className="text-gray-500">Aqui está um resumo da sua comunidade hoje.</p>
       </div>
 
