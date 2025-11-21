@@ -1,7 +1,7 @@
 {
-  "name": "Aposta Zero - Recupere sua vida financeira",
-  "short_name": "Aposta Zero",
-  "description": "App para ajudar na recuperação do vício em apostas online",
+  "name": "Comunidade de Pagamentos - Aprenda e Conecte-se",
+  "short_name": "Comunidade Pagamentos",
+  "description": "Comunidade especializada em meios de pagamento. Aprenda sobre PIX, cartões, adquirência e muito mais com profissionais experientes.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
