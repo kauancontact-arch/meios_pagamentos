@@ -1,4 +1,4 @@
-import { Home, MessageSquare, BookOpen, Calendar, Users, Wrench, FileText, Newspaper, Briefcase } from 'lucide-react';
+import { Home, MessageSquare, BookOpen, Calendar, Users, Wrench, Newspaper, Briefcase } from 'lucide-react';
 import { useAppContext } from '@/contexts/AppContext';
 
 const navItems = [
@@ -8,9 +8,8 @@ const navItems = [
   { name: 'Eventos', icon: Calendar, screen: 'events' },
   { name: 'Mentores', icon: Users, screen: 'mentors' },
   { name: 'Ferramentas', icon: Wrench, screen: 'tools' },
-  { name: 'Documentos', icon: FileText, screen: 'home' }, // Placeholder
-  { name: 'News', icon: Newspaper, screen: 'home' }, // Placeholder
-  { name: 'Empregos', icon: Briefcase, screen: 'home' }, // Placeholder
+  { name: 'Notícias', icon: Newspaper, screen: 'news' },
+  { name: 'Empregos', icon: Briefcase, screen: 'jobs' },
 ];
 
 export function Sidebar() {

@@ -11,6 +11,8 @@ import { EventsPage } from './pages/EventsPage';
 import { EventDetailPage } from './pages/EventDetailPage';
 import { MentorsPage } from './pages/MentorsPage';
 import { ToolsPage } from './pages/ToolsPage';
+import { NewsPage } from './pages/NewsPage';
+import { JobsPage } from './pages/JobsPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -56,6 +58,10 @@ function App() {
         return <MentorsPage />;
       case 'tools':
         return <ToolsPage />;
+      case 'news':
+        return <NewsPage />;
+      case 'jobs':
+        return <JobsPage />;
       case 'profile':
         return <ProfilePage />;
       default:
