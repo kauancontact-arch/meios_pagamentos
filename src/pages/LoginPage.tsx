@@ -17,7 +17,7 @@ export function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [resendEmail, setResendEmail] = useState('');
   const { login } = useAppContext();
-  const { signUp, loading, resendConfirmation } = useAuth();
+  const { signUp, loading } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +27,11 @@ export function LoginPage() {
     try {
       if (isSignUp) {
         await signUp(email, password, { firstName, lastName });
-        setSuccess('Conta criada com sucesso! Verifique seu email para confirmar e fazer login.');
+        setSuccess('Conta criada com sucesso! Você será redirecionado automaticamente.');
+        // Wait a moment for the auth state to update
+        setTimeout(() => {
+          window.location.reload(); // Force reload to check auth state
+        }, 1000);
       } else {
         await login(email, password);
       }
@@ -38,7 +42,7 @@ export function LoginPage() {
       } else if (err.message?.includes('Invalid login credentials')) {
         setError('Email ou senha incorretos.');
       } else if (err.message?.includes('User already registered')) {
-        setError('Este email já está cadastrado.');
+        setError('Este email já está cadastrado. Tente fazer login ou use outro email.');
       } else if (err.message?.includes('Password should be at least')) {
         setError('A senha deve ter pelo menos 6 caracteres.');
       } else if (err.message?.includes('Email not confirmed')) {
