@@ -19,7 +19,20 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 function App() {
-  const { currentUser, currentScreen } = useAppContext();
+  const { currentUser, currentScreen, loading } = useAppContext();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-primary rounded-xl mx-auto flex items-center justify-center text-primary-foreground font-bold text-3xl mb-4">
+            P
+          </div>
+          <p className="text-gray-500">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!currentUser) {
     return <LoginPage />;
