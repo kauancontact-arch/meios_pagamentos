@@ -23,11 +23,15 @@ export function LoginPage() {
     setError('');
     setSuccess('');
 
+    console.log('Form submitted:', { email, isSignUp, firstName, lastName });
+
     try {
       if (isSignUp) {
+        console.log('Calling signUp...');
         await signUp(email, password, { firstName, lastName });
         setSuccess('Conta criada com sucesso! Verifique seu email para confirmar.');
       } else {
+        console.log('Calling login...');
         await login(email, password);
       }
     } catch (err: any) {
