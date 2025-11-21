@@ -1,53 +1,16 @@
-export interface Tool {
-  id: string;
-  name: string;
-  description: string;
-  category: 'iso8583' | 'conciliation' | 'metrics' | 'settlement' | 'ai' | 'rules' | 'other';
-  icon: string;
-  status: 'free' | 'premium' | 'beta';
-  popularity: number; // 1-5 stars
-  usageCount: number;
-  features: string[];
-  demoUrl?: string;
-  isNew?: boolean;
-}
-
-export interface News {
+export interface Course {
   id: string;
   title: string;
-  summary: string;
-  content: string;
-  authorId: string;
-  publishedAt: string;
-  category: 'regulatory' | 'industry' | 'technology' | 'market' | 'company';
-  tags: string[];
-  imageUrl?: string;
-  readTime: number; // in minutes
-  featured: boolean;
-  views: number;
-  likes: number;
-}
-
-export interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  type: 'full-time' | 'part-time' | 'contract' | 'freelance' | 'internship';
-  salary?: {
-    min: number;
-    max: number;
-    currency: string;
-  };
   description: string;
-  requirements: string[];
-  benefits: string[];
-  postedBy: string;
-  postedAt: string;
-  applicationUrl: string;
-  isRemote: boolean;
-  experience: 'entry' | 'mid' | 'senior' | 'lead' | 'executive';
+  level: 'basic' | 'intermediate' | 'advanced';
+  duration: number; // in minutes
+  modules: string[];
+  instructor: string;
+  rating: number;
+  studentsCount: number;
+  price: number; // 0 for free
   tags: string[];
-  views: number;
-  applications: number;
+  prerequisites: string[]; // course IDs
+  completionRate: number; // percentage
+  lastUpdated: string;
 }
