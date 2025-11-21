@@ -7,8 +7,6 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Initializing auth...');
-    
     // Get initial session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
@@ -79,11 +77,25 @@ export function useAuth() {
     console.log('Sign out successful');
   };
 
+  const resendConfirmation = async (email: string) => {
+    console.log('Resending confirmation for:', email);
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email: email,
+    });
+    if (error) {
+      console.error('Resend confirmation error:', error);
+      throw error;
+    }
+    console.log('Confirmation email resent');
+  };
+
   return {
     user,
     loading,
     signIn,
     signUp,
     signOut,
+    resendConfirmation,
   };
 }

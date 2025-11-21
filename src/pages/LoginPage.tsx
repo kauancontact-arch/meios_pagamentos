@@ -15,28 +15,23 @@ export function LoginPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const [resendEmail, setResendEmail] = useState('');
   const { login } = useAppContext();
-  const { signUp, loading } = useAuth();
+  const { signUp, loading, resendConfirmation } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
-    console.log('Form submitted:', { email, isSignUp, firstName, lastName });
-
     try {
       if (isSignUp) {
-        console.log('Calling signUp...');
         await signUp(email, password, { firstName, lastName });
-        setSuccess('Conta criada com sucesso! Verifique seu email para confirmar.');
+        setSuccess('Conta criada com sucesso! Verifique seu email para confirmar e fazer login.');
       } else {
-        console.log('Calling login...');
         await login(email, password);
       }
     } catch (err: any) {
-      console.error('Auth error:', err);
-      
       // Melhor tratamento de erros específicos
       if (err.message?.includes('Failed to fetch')) {
         setError('Erro de conexão. Verifique sua internet e tente novamente.');
@@ -46,9 +41,25 @@ export function LoginPage() {
         setError('Este email já está cadastrado.');
       } else if (err.message?.includes('Password should be at least')) {
         setError('A senha deve ter pelo menos 6 caracteres.');
+      } else if (err.message?.includes('Email not confirmed')) {
+        setError('Email não confirmado. Verifique sua caixa de entrada e confirme seu email antes de fazer login.');
+        setResendEmail(email);
+      } else if (err.message?.includes('signup is disabled')) {
+        setError('Cadastro desabilitado temporariamente. Tente novamente mais tarde.');
       } else {
         setError(err.message || 'Erro ao processar solicitação');
       }
+    }
+  };
+
+  const handleResendConfirmation = async () => {
+    if (!resendEmail) return;
+    try {
+      await resendConfirmation(resendEmail);
+      setSuccess('Email de confirmação reenviado! Verifique sua caixa de entrada.');
+      setError('');
+    } catch (err: any) {
+      setError('Erro ao reenviar email: ' + err.message);
     }
   };
 
@@ -120,6 +131,11 @@ export function LoginPage() {
               </div>
               {error && <p className="text-sm text-red-500">{error}</p>}
               {success && <p className="text-sm text-green-500">{success}</p>}
+              {resendEmail && (
+                <Button type="button" variant="outline" onClick={handleResendConfirmation} className="w-full">
+                  Reenviar Email de Confirmação
+                </Button>
+              )}
               <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={loading}>
                 {loading ? 'Processando...' : isSignUp ? 'Criar Conta' : 'Entrar'}
               </Button>
@@ -130,6 +146,7 @@ export function LoginPage() {
                   setIsSignUp(!isSignUp);
                   setError('');
                   setSuccess('');
+                  setResendEmail('');
                 }}
                 className="text-sm text-primary hover:underline"
               >
