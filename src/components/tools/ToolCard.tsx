@@ -3,7 +3,7 @@ import { Tool } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Star, Users, Zap, Crown, Flask } from 'lucide-react';
+import { Star, Users, Zap, Crown, TestTube } from 'lucide-react';
 
 interface ToolCardProps {
   tool: Tool;
@@ -24,7 +24,7 @@ const categoryLabels = {
 const statusIcons = {
   free: <Zap className="w-4 h-4" />,
   premium: <Crown className="w-4 h-4" />,
-  beta: <Flask className="w-4 h-4" />
+  beta: <TestTube className="w-4 h-4" />
 };
 
 const statusLabels = {

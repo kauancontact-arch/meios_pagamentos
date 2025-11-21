@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Search, Filter, Wrench, Star, Users, Zap, Crown, Flask } from 'lucide-react';
+import { ArrowLeft, Search, Filter, Wrench, Star, Users, Zap, Crown, TestTube } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 type SortBy = 'popularity' | 'usage' | 'name' | 'newest';
@@ -152,7 +152,7 @@ export function ToolsPage() {
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <Flask className="w-8 h-8 text-blue-500" />
+              <TestTube className="w-8 h-8 text-blue-500" />
               <div>
                 <p className="text-2xl font-bold">{mockTools.filter(t => t.status === 'beta').length}</p>
                 <p className="text-sm text-gray-500">Beta</p>
