@@ -19,9 +19,9 @@ export function Sidebar() {
   const { currentScreen, navigate } = useAppContext();
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+    <div className="w-64 bg-white border-r border-gray-200 flex flex-col h-full">
       {/* Logo */}
-      <div className="p-6 border-b border-gray-200">
+      <div className="p-6 border-b border-gray-200 flex-shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-lg">P</span>
@@ -34,29 +34,29 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <div className="space-y-2">
+      <nav className="flex-1 p-4 overflow-y-auto">
+        <div className="space-y-1">
           {navItems.map((item) => (
             <Button
               key={item.screen}
               variant={currentScreen === item.screen ? 'default' : 'ghost'}
               className={cn(
-                'w-full justify-start',
+                'w-full justify-start h-10 px-3',
                 currentScreen === item.screen
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
               )}
               onClick={() => navigate(item.screen)}
             >
-              <item.icon className="w-4 h-4 mr-3" />
-              {item.name}
+              <item.icon className="w-4 h-4 mr-3 flex-shrink-0" />
+              <span className="truncate">{item.name}</span>
             </Button>
           ))}
         </div>
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4 border-t border-gray-200 flex-shrink-0">
         <div className="text-xs text-gray-500 text-center">
           © 2024 Comunidade de Pagamentos
         </div>
