@@ -41,15 +41,17 @@ export function Sidebar() {
               key={item.screen}
               variant={currentScreen === item.screen ? 'default' : 'ghost'}
               className={cn(
-                'w-full justify-start h-10 px-3',
+                'w-full justify-start h-11 px-4',
                 currentScreen === item.screen
                   ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100'
               )}
               onClick={() => navigate(item.screen)}
             >
-              <item.icon className="w-4 h-4 mr-3 flex-shrink-0" />
-              <span className="truncate">{item.name}</span>
+              <div className="flex items-center w-full">
+                <item.icon className="w-5 h-5 mr-4 flex-shrink-0" />
+                <span className="text-left">{item.name}</span>
+              </div>
             </Button>
           ))}
         </div>
